@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import UserProfileForm
 from .models import UserProfile
+from django.shortcuts import get_object_or_404
 
 def get_current_user():
     print("testing")
@@ -11,10 +12,9 @@ def network_page(request):
     current_user = get_current_user()
 
     # Simulated recommendations: all other users
-    recommendations = UserProfile.objects.exclude(id=current_user.id)
+    recommendations = UserProfile.objects.exclude(id=current_user.id).exclude(id__in=current_user.connections.all())
     
-    # Connections: for now, just hardcode none or fake some later
-    connections = []  # Can simulate with a list of UserProfile objects
+    connections = current_user.connections.all()
 
     return render(request, 'network/network.html', {
         'profile': current_user,
@@ -45,3 +45,14 @@ def create_profile(request):
 
 def home(request):
     return render(request, 'network/home.html')
+
+
+def connect_user(request, user_id):
+    current_user = get_current_user()
+    target_user = get_object_or_404(UserProfile, id=user_id)
+
+    # Prevent duplicate connection
+    if target_user != current_user:
+        current_user.connections.add(target_user)
+
+    return redirect('network_page')

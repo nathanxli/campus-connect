@@ -11,5 +11,7 @@ class UserProfile(models.Model):
     non_academic_interests = models.TextField(help_text="Comma-separated list")
     current_classes = models.TextField(help_text="Comma-separated list")
 
+    connections = models.ManyToManyField('self', symmetrical=False, blank=True)
+
     def __str__(self):
         return self.username

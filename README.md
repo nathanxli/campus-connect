@@ -7,5 +7,5 @@ Profiles will be recommended with a weighted system.
 ## Technical Detail
 Frontend built in *React*.
 Backend built with *Django*.
-Database is *PostgreSQL*.
+Database is *SQLite*.
 

@@ -3,8 +3,8 @@ from .forms import UserProfileForm
 from .models import UserProfile
 
 def get_current_user():
-    from .models import UserProfile
-    return UserProfile.objects.first() # Simulate a logged-in user
+    print("testing")
+    return UserProfile.objects.last() # Simulate a logged-in user
 
 
 def network_page(request):
@@ -17,7 +17,7 @@ def network_page(request):
     connections = []  # Can simulate with a list of UserProfile objects
 
     return render(request, 'network/network.html', {
-        'current_user': current_user,
+        'profile': current_user,
         'recommendations': recommendations,
         'connections': connections,
     })
@@ -25,13 +25,15 @@ def network_page(request):
 
 def profile_view_page(request):
     current_user = get_current_user()
+    print("current user: ", current_user)
     return render(request, 'network/profile_view.html', {
-        'user': current_user
+        'profile': current_user
     })
 
 
 
 def create_profile(request):
+    print("accessing create profile page")
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
@@ -43,9 +45,3 @@ def create_profile(request):
 
 def home(request):
     return render(request, 'network/home.html')
-
-def network_page(request):
-    return render(request, 'network/network.html')
-
-def profile_view_page(request):
-    return render(request, 'network/profile_view.html')

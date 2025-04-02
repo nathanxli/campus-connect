@@ -1,3 +1,13 @@
 from django.shortcuts import render
+from .forms import UserProfileForm
 
 # Create your views here.
+def create_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('profile_created')  # Placeholder success page
+    else:
+        form = UserProfileForm()
+    return render(request, 'network/create_profile.html', {'form': form})

@@ -21,6 +21,13 @@ def network_page(request):
         'recommendations': recommendations,
         'connections': connections,
     })
+    
+
+def profile_view_page(request):
+    current_user = get_current_user()
+    return render(request, 'network/profile_view.html', {
+        'user': current_user
+    })
 
 
 

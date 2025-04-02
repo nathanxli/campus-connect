@@ -1,2 +1,14 @@
-<h1>Profile View Page</h1>
-<p>This is where user profiles will be displayed.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+    <h1>{{ user.name }}'s Profile</h1>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Majors:</strong> {{ user.majors }}</p>
+    <p><strong>Academic Interests:</strong> {{ user.academic_interests }}</p>
+    <p><strong>Non-Academic Interests:</strong> {{ user.non_academic_interests }}</p>
+    <p><strong>Current Classes:</strong> {{ user.current_classes }}</p>
+</body>
+</html>

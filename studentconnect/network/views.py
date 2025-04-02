@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from .forms import UserProfileForm
 
+def get_current_user():
+    from .models import UserProfile
+    return UserProfile.objects.first()
+
 # Create your views here.
 def create_profile(request):
     if request.method == 'POST':

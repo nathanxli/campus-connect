@@ -11,3 +11,12 @@ def create_profile(request):
     else:
         form = UserProfileForm()
     return render(request, 'network/create_profile.html', {'form': form})
+
+def home(request):
+    return render(request, 'network/home.html')
+
+def network_page(request):
+    return render(request, 'network/network.html')
+
+def profile_view_page(request):
+    return render(request, 'network/profile_view.html')

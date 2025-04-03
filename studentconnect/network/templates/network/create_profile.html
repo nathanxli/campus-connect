@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create Profile</title>
-</head>
-<body>
+{% extends 'network/base.html' %}
+
+{% block title %}Create Profile | StudentConnect{% endblock %}
+
+{% block content %}
     <h1>Create Your Profile</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Create Profile</button>
     </form>
-</body>
-</html>
+{% endblock %}

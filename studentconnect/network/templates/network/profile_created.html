@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Profile Created</title>
-</head>
-<body>
-    <h1>Success!</h1>
-    <p>Your profile has been created successfully.</p>
-    <a href="/create/">Create another profile</a>
-</body>
-</html>
+{% extends 'network/base.html' %}
+
+{% block title %}Profile Created | StudentConnect{% endblock %}
+
+{% block content %}
+    <h1>Profile successfully created!</h1>
+    <p><a href="{% url 'profile_view_page' %}">View your profile</a> or <a href="{% url 'network_page' %}">go to your network</a>.</p>
+{% endblock %}

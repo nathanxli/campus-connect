@@ -1,61 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Network</title>
-    <style>
-        .container {
-            display: flex;
-            gap: 2rem;
-        }
-        .column {
-            width: 50%;
-        }
-        .profile-card {
-            border: 1px solid #ccc;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-    </style>
-</head>
-<body>
+{% extends 'network/base.html' %}
+
+{% block title %}My Network | StudentConnect{% endblock %}
+
+{% block content %}
     <h1>My Network</h1>
-    <div class="container">
-        <div class="column">
+    <div class="container" style="display: flex; gap: 2rem;">
+        <div class="column" style="width: 50%;">
             <h2>Recommended Users</h2>
-                {% for user in recommendations %}
-                    <div class="profile-card">
-                        <strong>{{ user.name }}</strong> ({{ user.username }})<br>
-                        <p><strong>Majors:</strong> {{ user.majors }}</p>
-                        <p><strong>Academic Interests:</strong> {{ user.academic_interests }}</p>
-                        <p><strong>Non-Academic Interests:</strong> {{ user.non_academic_interests }}</p>
-                        <p><strong>Current Classes:</strong> {{ user.current_classes }}</p>
+            {% for user in recommendations %}
+                <div class="profile-card" style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
+                    <strong>{{ user.name }}</strong> ({{ user.username }})<br>
+                    <p><strong>Majors:</strong> {{ user.majors }}</p>
+                    <p><strong>Academic Interests:</strong> {{ user.academic_interests }}</p>
+                    <p><strong>Non-Academic Interests:</strong> {{ user.non_academic_interests }}</p>
+                    <p><strong>Current Classes:</strong> {{ user.current_classes }}</p>
 
-                        <form action="{% url 'connect_user' user.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Connect</button>
-                        </form>
-                    </div>
-                {% endfor %}
+                    <form action="{% url 'connect_user' user.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Connect</button>
+                    </form>
+                </div>
+            {% empty %}
+                <p>No recommendations found.</p>
+            {% endfor %}
         </div>
-        <div class="column">
-            <h2>Your Connections</h2>
-                {% for user in connections %}
-                    <div class="profile-card">
-                        <strong>{{ user.name }}</strong> ({{ user.username }})<br>
-                        <p><strong>Majors:</strong> {{ user.majors }}</p>
-                        <p><strong>Academic Interests:</strong> {{ user.academic_interests }}</p>
-                        <p><strong>Non-Academic Interests:</strong> {{ user.non_academic_interests }}</p>
-                        <p><strong>Current Classes:</strong> {{ user.current_classes }}</p>
 
-                        <form action="{% url 'disconnect_user' user.id %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit">Disconnect</button>
-                        </form>
-                    </div>
-                {% empty %}
-                    <p>No connections yet.</p>
-                {% endfor %}
+        <div class="column" style="width: 50%;">
+            <h2>Your Connections</h2>
+            {% for user in connections %}
+                <div class="profile-card" style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
+                    <strong>{{ user.name }}</strong> ({{ user.username }})<br>
+                    <p><strong>Majors:</strong> {{ user.majors }}</p>
+                    <p><strong>Academic Interests:</strong> {{ user.academic_interests }}</p>
+                    <p><strong>Non-Academic Interests:</strong> {{ user.non_academic_interests }}</p>
+                    <p><strong>Current Classes:</strong> {{ user.current_classes }}</p>
+
+                    <form action="{% url 'disconnect_user' user.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Disconnect</button>
+                    </form>
+                </div>
+            {% empty %}
+                <p>No connections yet.</p>
+            {% endfor %}
         </div>
     </div>
-</body>
-</html>
+{% endblock %}

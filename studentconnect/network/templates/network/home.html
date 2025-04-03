@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>StudentConnect Home</title>
-</head>
-<body>
+{% extends 'network/base.html' %}
+
+{% block title %}Home | StudentConnect{% endblock %}
+
+{% block content %}
     <h1>Welcome to StudentConnect</h1>
+    <p>Build your network based on shared academic and personal interests.</p>
     <ul>
-        <li><a href="{% url 'create_profile' %}">Create Profile</a></li>
-        <li><a href="{% url 'network_page' %}">View Network Recommendations</a></li>
-        <li><a href="{% url 'profile_view_page' %}">View Profile</a></li>
+        <li><a href="{% url 'create_profile' %}">Create your profile</a></li>
+        <li><a href="{% url 'profile_view_page' %}">View your profile</a></li>
+        <li><a href="{% url 'network_page' %}">Explore your network</a></li>
     </ul>
-</body>
-</html>
+{% endblock %}

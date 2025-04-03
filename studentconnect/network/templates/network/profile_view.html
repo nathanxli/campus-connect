@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Profile</title>
-</head>
-<body>
+{% extends 'network/base.html' %}
+
+{% block title %}My Profile | StudentConnect{% endblock %}
+
+{% block content %}
     <h1>{{ profile.name }}'s Profile</h1>
-    <p><strong>profilename:</strong> {{ profile.profilename }}</p>
+    <p><strong>Username:</strong> {{ profile.username }}</p>
     <p><strong>Majors:</strong> {{ profile.majors }}</p>
     <p><strong>Academic Interests:</strong> {{ profile.academic_interests }}</p>
     <p><strong>Non-Academic Interests:</strong> {{ profile.non_academic_interests }}</p>
     <p><strong>Current Classes:</strong> {{ profile.current_classes }}</p>
-</body>
-</html>
+{% endblock %}

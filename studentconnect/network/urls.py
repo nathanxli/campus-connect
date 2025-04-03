@@ -10,4 +10,6 @@ urlpatterns = [
     path('network/', views.network_page, name='network_page'),
     path('profile/', views.profile_view_page, name='profile_view_page'),
     path('connect/<int:user_id>/', views.connect_user, name='connect_user'),
+    path('disconnect/<int:user_id>/', views.disconnect_user, name='disconnect_user'),
+
 ]
